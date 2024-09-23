@@ -15,3 +15,5 @@ A GPT based chatbot for Netflix
 ## STEPS
 - Create a React App / Parcel App
 - Set up tailwindcss
+- Set up react-router
+- Create Header

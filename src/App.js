@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import Body from "./Components/Body"
 
 
 const App = () => {
     return <>
-        <h1 className="text-5xl text-rose-600">NetflixGPT</h1>
+        <Body />
     </>
 }
 

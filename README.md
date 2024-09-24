@@ -17,3 +17,6 @@ A GPT based chatbot for Netflix
 - Set up tailwindcss
 - Set up react-router
 - Create Header
+- Login Form
+- Sign up Form
+- Form Validation

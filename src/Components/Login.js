@@ -22,7 +22,35 @@ const Login = () => {
     const handleSubmit = () => {
         const message = formValidation(formType === "signup" && name.current.value, email.current.value, password.current.value);
         setErrorMessage(message);
-        
+        if (Object.keys(message).length !== 0) return;
+
+        if (formType === "signup") {
+            createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+                .then((userCredential) => {
+                    // Signed up 
+                    const user = userCredential.user;
+                    console.log(user);
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    setErrorMessage({ signupError: errorCode + " " + errorMessage });
+                    console.log(errorMessage.signupError);
+                });
+        } else {
+            signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    console.log(user);
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    setErrorMessage({ signupError: errorCode + " " + errorMessage });
+                    console.log(errorMessage.signupError);
+                });
+        }
     }
 
     return (

@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import { MAIN_BG_IMG } from "../utils/constant";
 import Header from "./Header";
 import { formValidation } from "../utils/validate";
+import { auth } from "../utils/firebase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
 
@@ -20,6 +22,7 @@ const Login = () => {
     const handleSubmit = () => {
         const message = formValidation(formType === "signup" && name.current.value, email.current.value, password.current.value);
         setErrorMessage(message);
+        
     }
 
     return (
@@ -37,14 +40,14 @@ const Login = () => {
                     </div>
                     }
                     <div className="w-full space-y-2">
-                        <input ref={email} className="w-full px-4 py-4 text-white outline-none border border-gray-400 rounded-md bg-black bg-opacity-50" type="email" placeholder="Email"  />
+                        <input ref={email} className="w-full px-4 py-4 text-white outline-none border border-gray-400 rounded-md bg-black bg-opacity-50" type="email" placeholder="Email" />
                         <p className="absolute text-red-500 text-xs">{errorMessage?.emailResult && errorMessage.emailResult}</p>
                     </div>
                     <div className="w-full space-y-2">
-                        <input ref={password} className="w-full px-4 py-4 text-white outline-none border border-gray-400 rounded-md bg-black bg-opacity-50" type="password" placeholder="Password"  />
+                        <input ref={password} className="w-full px-4 py-4 text-white outline-none border border-gray-400 rounded-md bg-black bg-opacity-50" type="password" placeholder="Password" />
                         <p className="absolute text-red-500 text-xs">{errorMessage?.passwordResult && errorMessage.passwordResult}</p>
                     </div>
-                    <input type="submit" onClick={() => handleSubmit()} value={formType === "signin" ? "Sign in" : "Sign up"} className="py-2 px-4 text-white rounded-md font-semibold bg-red-700" />
+                    <input type="submit" onClick={() => handleSubmit()} value={formType === "signin" ? "Sign in" : "Sign up"} className="py-2 px-4 text-white rounded-md font-semibold bg-red-700 cursor-pointer" />
                 </form>
                 <h3>{formType === "signin" ? "New to Netflix?" : "Alraedy have account?"} <span onClick={() => handleFormType()} className="font-semibold hover:underline cursor-pointer">Sign {formType === "signin" ? "up" : "in"} now</span>.</h3>
             </div>

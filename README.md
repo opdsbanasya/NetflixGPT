@@ -20,3 +20,5 @@ A GPT based chatbot for Netflix
 - Login Form
 - Sign up Form
 - Form Validation
+- Set up Firebase
+- Project deployment on Firebase

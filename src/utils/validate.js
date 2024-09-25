@@ -1,6 +1,6 @@
 export const formValidation = (name, email, password) => {
     const validationResult = {};
-    console.log(name);
+    // console.log(name);
     
     // name validation
     if(name && name.trim()===''){

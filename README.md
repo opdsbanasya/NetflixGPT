@@ -25,3 +25,6 @@ A GPT based chatbot for Netflix
 - Sign up / Sign in with Firebase
 - Redux setup
 - create userSlice
+- dispatch an action
+- navigate to browse
+- subscribe to store

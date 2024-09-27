@@ -1,8 +1,11 @@
+import { useState } from "react";
+import Header from "./Header";
 
 const Browse = () => {
+
     return (
         <div>
-            Bowse
+            <Header isBrowse={true}/>
         </div>
     );
 }

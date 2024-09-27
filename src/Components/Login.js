@@ -5,10 +5,13 @@ import { formValidation } from "../utils/validate";
 import { auth } from "../utils/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../store/userSlice";
 
 const Login = () => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [formType, setFormType] = useState("signin");
     const [errorMessage, setErrorMessage] = useState(null);
@@ -35,10 +38,12 @@ const Login = () => {
                     console.log(user);
 
                     updateProfile(auth.currentUser, {
-                        displayName: name.current.value, 
+                        displayName: name.current.value,
                         photoURL: "https://avatars.githubusercontent.com/u/113586165?v=4"
                     }).then(() => {
-                        navigate("browse");
+                        const { uid, email, displayName, photoURL } = auth.currentUser;
+                        dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
+                        navigate("/browse");
                     }).catch((error) => {
                         const errorCode = error.code;
                         const FireErrorMessage = error.message;

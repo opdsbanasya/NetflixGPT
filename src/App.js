@@ -1,11 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Body from "./Components/Body"
+import { Provider } from "react-redux";
+import appStore from "./store/appStore";
 
 
 const App = () => {
     return <>
-        <Body />
+        <Provider store={appStore}>
+            <Body />
+        </Provider>
     </>
 }
 

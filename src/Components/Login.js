@@ -3,7 +3,7 @@ import { MAIN_BG_IMG } from "../utils/constant";
 import Header from "./Header";
 import { formValidation } from "../utils/validate";
 import { auth } from "../utils/firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -33,7 +33,17 @@ const Login = () => {
                     // Signed up 
                     const user = userCredential.user;
                     console.log(user);
-                    navigate("browse");
+
+                    updateProfile(auth.currentUser, {
+                        displayName: name.current.value, 
+                        photoURL: "https://avatars.githubusercontent.com/u/113586165?v=4"
+                    }).then(() => {
+                        navigate("browse");
+                    }).catch((error) => {
+                        const errorCode = error.code;
+                        const FireErrorMessage = error.message;
+                        setErrorMessage({ signError: errorCode + " " + FireErrorMessage });
+                    });
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -47,7 +57,7 @@ const Login = () => {
                     // Signed in 
                     const user = userCredential.user;
                     console.log(user);
-                    navigate("browse");
+                    navigate("/browse");
                 })
                 .catch((error) => {
                     const errorCode = error.code;

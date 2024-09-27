@@ -33,9 +33,9 @@ const Login = () => {
                 })
                 .catch((error) => {
                     const errorCode = error.code;
-                    const errorMessage = error.message;
-                    setErrorMessage({ signupError: errorCode + " " + errorMessage });
-                    console.log(errorMessage.signupError);
+                    const FireErrorMessage = error.message;
+                    setErrorMessage({ signError: errorCode + " " + FireErrorMessage });
+                    console.log(errorMessage.signError);
                 });
         } else {
             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
@@ -46,9 +46,9 @@ const Login = () => {
                 })
                 .catch((error) => {
                     const errorCode = error.code;
-                    const errorMessage = error.message;
-                    setErrorMessage({ signupError: errorCode + " " + errorMessage });
-                    console.log(errorMessage.signupError);
+                    const FireErrorMessage = error.message;
+                    setErrorMessage(errorCode + " " + FireErrorMessage);
+                    alert("Invalid User");
                 });
         }
     }

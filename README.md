@@ -29,5 +29,8 @@ A GPT based chatbot for Netflix
 - navigate to browse
 - subscribe to store
 - bug fix1: fixing signup bug to loading image and display name
-- subcribing onAuthStateChanged when component is mounted.
+- subcribing onAuthStateChanged when component is mounted
 - Shifting all constants into constant.js
+- creating account on TMDB & getting API
+- fetching now playing movies
+- adding now playing movies to redux store

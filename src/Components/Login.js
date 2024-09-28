@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { MAIN_BG_IMG } from "../utils/constant";
+import { MAIN_BG_IMG, USER_ICON } from "../utils/constant";
 import Header from "./Header";
 import { formValidation } from "../utils/validate";
 import { auth } from "../utils/firebase";
@@ -35,7 +35,7 @@ const Login = () => {
                     const user = userCredential.user;
                     updateProfile(auth.currentUser, {
                         displayName: name.current.value,
-                        photoURL: "https://avatars.githubusercontent.com/u/113586165?v=4"
+                        photoURL: USER_ICON
                     }).then(() => {
                         const { uid, email, displayName, photoURL } = auth.currentUser;
                         dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));

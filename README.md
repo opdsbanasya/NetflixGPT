@@ -29,3 +29,5 @@ A GPT based chatbot for Netflix
 - navigate to browse
 - subscribe to store
 - bug fix1: fixing signup bug to loading image and display name
+- subcribing onAuthStateChanged when component is mounted.
+- Shifting all constants into constant.js

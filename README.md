@@ -34,3 +34,4 @@ A GPT based chatbot for Netflix
 - creating account on TMDB & getting API
 - fetching now playing movies
 - adding now playing movies to redux store
+- creating hook to get movies

@@ -28,3 +28,4 @@ A GPT based chatbot for Netflix
 - dispatch an action
 - navigate to browse
 - subscribe to store
+- bug fix1: fixing signup bug to loading image and display name

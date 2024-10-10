@@ -7,10 +7,13 @@ A GPT based chatbot for Netflix
 - Browse
     - Header
     - Main Section
-        - Trailer in background
-        - Title & Description
-    - Movie Suggestions
-        - Horizontal Scroll
+        - Main Container
+            - Trailer in background
+            - Title & Description
+        - Secondary Container
+            - Movie List
+                - Movie Cards
+1.05.00
 
 ## STEPS
 - Create a React App / Parcel App

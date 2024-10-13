@@ -17,10 +17,6 @@ const MainContainer = () => {
         <div className="relative -z-10 overflow-x-hidden">
             <TitleOfMainMovie title={original_title} overview={overview} />
             <VideoBackground movieId={id} />
-            <br />
-            <br />
-            <br />
-            <br />
         </div>
     );
 }

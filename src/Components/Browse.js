@@ -9,8 +9,8 @@ const Browse = () => {
 
     useMovies();
 
-    const nowPlayingMovies = useSelector(store => store.movie?.nowPlayingMovies);
-    console.log(nowPlayingMovies);
+    // const nowPlayingMovies = useSelector(store => store.movie?.nowPlayingMovies);
+    // console.log(nowPlayingMovies);
     
 
     return (

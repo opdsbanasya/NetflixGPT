@@ -1,8 +1,8 @@
-import MovieCards from "./MovieCards";
+import MovieCards from "./MoviesCards";
 
 const MovieCategories = () => {
     return (
-        <div>
+        <div className="px-20 py-5">
             <MovieCards />
         </div>
     );

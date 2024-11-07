@@ -38,3 +38,6 @@ A GPT based chatbot for Netflix
 - fetching now playing movies
 - adding now playing movies to redux store
 - creating hook to get movies
+- Creating Movie Banner
+- Creating Movie Row
+- Adding all categories of movies

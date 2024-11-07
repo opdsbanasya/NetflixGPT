@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux";
 import MovieCard from "./MovieCard";
+import "../../style.css";
 
-const MoviesCards = ({ nowPlayingMovies }) => {
+const MoviesCards = ({ title, nowPlayingMovies }) => {
     return (
-        <div>
-            <h2 className="text-3xl font-bold py-4">Now Playing Movies</h2>
-            <div className="flex overflow-x-scroll">
+        <div className="py-5">
+            <h2 className="text-2xl font-bold py-5">{title}</h2>
+            <div className="flex overflow-x-scroll scrollbar-hide">
                 <div className="flex gap-8">
                     {nowPlayingMovies && nowPlayingMovies.length > 0 ? (
                         nowPlayingMovies.map(elem => {

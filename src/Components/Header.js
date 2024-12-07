@@ -40,12 +40,12 @@ const Header = () => {
     }
 
     return (
-        <header className="absolute px-20 py-4 bg-gradient-to-b from-black flex justify-between">
+        <header className="px-20 py-4 bg-black flex justify-between">
             <img className={`w-2/12 ${user && "w-[10%]"}`} src={NETFLIX_LOGO} alt="Netflix Logo" />
             {user && <nav className="flex items-center gap-8">
-                <button onClick={()=> handleGptSearch()} className="text-white font-semibold text-xl bg-purple-600 px-4 py-2 rounded-md">Search</button>
+                <button onClick={()=> handleGptSearch()} className="text-white font-semibold text-xl bg-purple-600 px-4 py-2 rounded-md cursor-pointer z-10">GPT Search</button>
                 <img className="w-8 rounded-full" src={user.photoURL} />
-                <button onClick={() => handleSignOut()} className="text-white font-semibold text-xl bg-red-600 px-4 py-2 rounded-md">Sign out</button>
+                <button onClick={() => handleSignOut()} className="text-white font-semibold text-xl bg-red-600 px-4 py-2 rounded-md cursor-pointer">Sign out</button>
             </nav>}
         </header>
 

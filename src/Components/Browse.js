@@ -24,9 +24,9 @@ const Browse = () => {
     
 
     return (
-        <div>
-            {showGPTButton && <GPTSearch />}
+        <div className="relative">
             <Header />
+            {showGPTButton && <GPTSearch />}
             <MainContainer />
             <MovieCategories />
         </div>

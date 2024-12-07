@@ -5,8 +5,8 @@ import "../../style.css";
 const MoviesCards = ({ title, nowPlayingMovies }) => {
     return (
         <div className="py-5">
-            <h2 className="text-2xl font-bold py-5">{title}</h2>
-            <div className="flex overflow-x-scroll scrollbar-hide">
+            <h2 className="text-2xl font-bold py-5">{title} <sup className="px-[6px] py-[1px] rounded-md bg-[#FF2929] text-xs tracking-wide text-white text-nowrap rotate-90">Scroll Horizontally</sup></h2>
+            <div className="flex overflow-x-scroll scrollbar-hide relative">
                 <div className="flex gap-8">
                     {nowPlayingMovies && nowPlayingMovies.length > 0 ? (
                         nowPlayingMovies.map(elem => {

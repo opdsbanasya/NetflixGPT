@@ -41,3 +41,8 @@ A GPT based chatbot for Netflix
 - Creating Movie Banner
 - Creating Movie Row
 - Adding all categories of movies
+- Creating GPT slice
+- Adding Gpt slice into store
+- Creating GPT component and adding to browse
+- Dispaching GPT action
+- Creating GPTSearchBar and GPTMovieSuggestion

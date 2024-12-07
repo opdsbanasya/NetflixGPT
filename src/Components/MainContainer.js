@@ -11,7 +11,6 @@ const MainContainer = () => {
 
     const mainMovie = nowPlayingMovies[movieIndex];
     if(!mainMovie) return;
-    console.log(mainMovie);
 
     const { original_title, overview, id } = mainMovie;
 

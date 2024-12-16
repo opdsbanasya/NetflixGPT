@@ -49,4 +49,4 @@ A GPT based chatbot for Netflix
 - Implementing MultiLanguage support✨
 - Adding Groq based on Llama 3
 - Initailize Llama 3 model
-- Adding into search button
+- Adding Llama Model into search button

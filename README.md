@@ -46,3 +46,7 @@ A GPT based chatbot for Netflix
 - Creating GPT component and adding to browse
 - Dispaching GPT action
 - Creating GPTSearchBar and GPTMovieSuggestion
+- Implementing MultiLanguage support✨
+- Adding Groq based on Llama 3
+- Initailize Llama 3 model
+- Adding into search button

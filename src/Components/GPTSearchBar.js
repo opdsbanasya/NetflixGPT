@@ -13,16 +13,17 @@ const GPTSearchBar = () => {
 
     return (
         <div className='w-full'>
-            <form className='w-[60%] mx-auto flex gap-5'
+            <form className='w-[60%] mx-auto flex gap-5 bg-[#FBF6E9] text-black pr-5 py-2 pl-3 rounded-md'
                 onSubmit={(e) => e.preventDefault()}
             >
-                <input
+                <textarea
                     ref={searchInput}
                     type='text'
-                    className='w-full mx-auto px-3 py-2 outline-none rounded-md text-black font-semibold text-lg' placeholder='What do you want to watch today?' />
+                    autoFocus='true'
+                    className='w-full h-20 mx-auto px-3 py-2 resize-none outline-none  bg-transparent font-semibold text-lg' placeholder='What do you want to watch today?' />
                 <input type='submit'
                     onClick={handleClickGPTSearch}
-                    className='text-white font-semibold text-xl bg-purple-600 px-4 py-2 rounded-md cursor-pointer' value="Search" />
+                    className='text-white font-semibold text-xl h-fit my-auto bg-purple-600 px-4 py-2 rounded-md cursor-pointer' value="Search" />
             </form>
         </div>
     );

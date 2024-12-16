@@ -11,9 +11,9 @@ import MovieCategories from "./MovieCategories";
 
 const Browse = () => {
 
-    const {showGPTButton} = useSelector(store => store.gptsearch);
+    const { showGPTButton } = useSelector(store => store.gptsearch);
     console.log(showGPTButton);
-    
+
     useNowPlayingMovies();
     usePopularMovies();
     useTopRatedMovies();
@@ -21,14 +21,20 @@ const Browse = () => {
 
     // const nowPlayingMovies = useSelector(store => store.movie?.nowPlayingMovies);
     // console.log(nowPlayingMovies);
-    
+
 
     return (
         <div className="relative">
-            <Header />
-            {showGPTButton && <GPTSearch />}
-            <MainContainer />
-            <MovieCategories />
+            {showGPTButton ? 
+            <section>
+                <Header /> 
+                <GPTSearch />
+            </section> : 
+            <section>
+                <Header />
+                <MainContainer />
+                <MovieCategories />
+            </section>}
         </div>
     );
 }

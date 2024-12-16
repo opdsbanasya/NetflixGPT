@@ -6,9 +6,9 @@ const GPTSearchBar = () => {
     const searchInput = useRef();
 
     const handleClickGPTSearch = async () => {
-        console.log(searchInput.current.value);
         const query = "Act as a movie recommendation system and suggest some movies for the query: "+searchInput.current.value+". Only give me 5 movie name, comma seperated like example result given ahead. examples: sholay, gadar, spiderman, karan arjun, koi mil gya. Give me only names no other content.";
-        llamaModel(query);
+        const llamaResult = await llamaModel(query);
+        console.log(llamaResult);
     }
 
     return (

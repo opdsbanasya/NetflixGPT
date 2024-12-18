@@ -45,7 +45,7 @@ export const llamaModel = async (query) => {
     if(!llamaResult) return;
     const {content} = llamaResult?.choices[0]?.message;
 
-    return content.split(", ");
+    return content;
     
 }
 

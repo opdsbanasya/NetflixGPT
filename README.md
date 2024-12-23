@@ -50,3 +50,6 @@ A GPT based chatbot for Netflix
 - Adding Groq based on Llama 3
 - Initailize Llama 3 model
 - Adding Llama Model into search button
+- Fetching Movies data for movies that suggested by Llama
+- adding movie names and data into store
+- selecting movie from the list and displaying on the screen

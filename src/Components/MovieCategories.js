@@ -6,10 +6,10 @@ const MovieCategories = () => {
 
     return (
         <div className="px-20 py-5 bg-black text-white">
-            <MovieCards title={"Now Playing Movies"} nowPlayingMovies={movie?.nowPlayingMovies} />
-            <MovieCards title={"Top Rated"} nowPlayingMovies={movie?.topRatedMovies} />
-            <MovieCards title={"Popular Movies"} nowPlayingMovies={movie?.popularMovies} />
-            <MovieCards title={"Upcoming Movies"} nowPlayingMovies={movie?.upcomingMovies} />
+            <MovieCards title={"Now Playing Movies"} movies={movie?.nowPlayingMovies} />
+            <MovieCards title={"Top Rated"} movies={movie?.topRatedMovies} />
+            <MovieCards title={"Popular Movies"} movies={movie?.popularMovies} />
+            <MovieCards title={"Upcoming Movies"} movies={movie?.upcomingMovies} />
         </div>
     );
 }

@@ -7,7 +7,7 @@ const GPTSearch = () => {
     return (
         <div className="w-full min-h-screen text-white space-y-7 px-10 py-10 pt-20 bg-[#111]">
             <GPTSearchBar />
-            {/* <GPTMovieSuggestion /> */}
+            <GPTMovieSuggestion />
         </div>
     );
 }

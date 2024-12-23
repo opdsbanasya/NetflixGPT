@@ -24,15 +24,13 @@ const GPTSearchBar = () => {
     const handleClickGPTSearch = async () => {
         const query = "Act as a movie recommendation system and suggest some movies for the query: " + searchInput.current.value + ". Only give me 5 movie name, comma seperated like example result given ahead. examples: sholay, gadar, spiderman, karan arjun, koi mil gya. Give me only names no other content.";
         const llamaResult = await llamaModel(query);
-        console.log(llamaResult);
 
         const movieArray = await llamaResult.split(",")
         const tmdbMovies = movieArray.map(movie => tmdbSearchData(movie));
+        
         // Here it give array of Promises, so need to resolve it.
-
         const searchedMovies = await Promise.all(tmdbMovies);
 
-        console.log(searchedMovies);
         dispatch(
             addGPTMovieResult({ movieName: movieArray, movieResult: searchedMovies })
         )

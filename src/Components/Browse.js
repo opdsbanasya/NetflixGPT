@@ -12,8 +12,7 @@ import MovieCategories from "./MovieCategories";
 const Browse = () => {
 
     const { showGPTButton } = useSelector(store => store.gptsearch);
-    console.log(showGPTButton);
-
+    
     useNowPlayingMovies();
     usePopularMovies();
     useTopRatedMovies();

@@ -1,34 +1,41 @@
 import React, { useRef } from 'react';
 import { llamaModel } from '../utils/llama';
 import { API_OPTIONS } from "../utils/constant";
+import { addGPTMovieResult } from '../store/gptSlice';
+import { useDispatch } from 'react-redux';
 
 const GPTSearchBar = () => {
 
+    const dispatch = useDispatch();
+
     const searchInput = useRef();
 
-    const tmdbSearchData = async (movie) =>{
-        const data = await fetch("https://api.themoviedb.org/3/search/movie?query=" 
-                        + movie +
-                        "&include_adult=false&language=en-US&page=1",
-                        API_OPTIONS
-                    );
+    const tmdbSearchData = async (movie) => {
+        const data = await fetch("https://api.themoviedb.org/3/search/movie?query="
+            + movie +
+            "&include_adult=false&language=en-US&page=1",
+            API_OPTIONS
+        );
         const json = await data.json();
 
         return json;
     }
 
     const handleClickGPTSearch = async () => {
-        const query = "Act as a movie recommendation system and suggest some movies for the query: "+searchInput.current.value+". Only give me 5 movie name, comma seperated like example result given ahead. examples: sholay, gadar, spiderman, karan arjun, koi mil gya. Give me only names no other content.";
+        const query = "Act as a movie recommendation system and suggest some movies for the query: " + searchInput.current.value + ". Only give me 5 movie name, comma seperated like example result given ahead. examples: sholay, gadar, spiderman, karan arjun, koi mil gya. Give me only names no other content.";
         const llamaResult = await llamaModel(query);
         console.log(llamaResult);
-        
+
         const movieArray = await llamaResult.split(",")
         const tmdbMovies = movieArray.map(movie => tmdbSearchData(movie));
-        // Here it give array of Promises than need to resolve it.
+        // Here it give array of Promises, so need to resolve it.
 
         const searchedMovies = await Promise.all(tmdbMovies);
 
         console.log(searchedMovies);
+        dispatch(
+            addGPTMovieResult({ movieName: movieArray, movieResult: searchedMovies })
+        )
     }
 
     return (

@@ -53,3 +53,5 @@ A GPT based chatbot for Netflix
 - Fetching Movies data for movies that suggested by Llama
 - adding movie names and data into store
 - selecting movie from the list and displaying on the screen
+- Adding Movie Details Page
+- Updating Routes for gpt and movies page

@@ -1,6 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./Login";
 import Browse from "./Browse";
+import MoviePage from "./MoviePage";
+import GPTSearch from "./GPTSearch";
+import MainContainer from "./MainContainer";
 
 const Body = () => {
 
@@ -11,10 +14,20 @@ const Body = () => {
             element: <Login />
         },
         {
-            path: "browse",
-            element: <Browse />
+            path: "/browse",
+            element: <Browse />,
+            children: [
+                { 
+                    path: "", 
+                    element: <MainContainer />
+                },
+                
+                { 
+                    path: "movie-info", 
+                    element: <MoviePage />
+                }
+            ]
         },
-        
     ])
 
 

@@ -4,14 +4,12 @@ import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import usePopularMovies from "../hooks/usePopularMovies";
 import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
-import GPTSearch from "./GPTSearch";
 import Header from "./Header";
-import MainContainer from "./MainContainer";
-import MovieCategories from "./MovieCategories";
+import { Outlet } from "react-router-dom";
 
 const Browse = () => {
 
-    const { showGPTButton } = useSelector(store => store.gptsearch);
+    
     
     useNowPlayingMovies();
     usePopularMovies();
@@ -24,16 +22,8 @@ const Browse = () => {
 
     return (
         <div className="relative">
-            {showGPTButton ? 
-            <section>
-                <Header /> 
-                <GPTSearch />
-            </section> : 
-            <section>
-                <Header />
-                <MainContainer />
-                <MovieCategories />
-            </section>}
+            <Header /> 
+            <Outlet />
         </div>
     );
 }

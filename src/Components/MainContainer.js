@@ -5,18 +5,11 @@ import { useSelector } from 'react-redux';
 import GPTSearch from './GPTSearch';
 
 const MainContainer = () => {
-    const { showGPTButton } = useSelector(store => store.gptsearch);
+    
     return (
         <div>
-            {showGPTButton ? (
-                <section>
-                    <GPTSearch />
-                </section>
-            ) : <section>
-                <TrailerContainer />
-                <MovieCategories />
-            </section>
-            }
+            <TrailerContainer />
+            <MovieCategories />
         </div>
     );
 }

@@ -21,7 +21,10 @@ const Body = () => {
                     path: "", 
                     element: <MainContainer />
                 },
-                
+                { 
+                    path: "gpt-search", 
+                    element: <GPTSearch />
+                },
                 { 
                     path: "movie-info", 
                     element: <MoviePage />

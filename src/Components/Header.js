@@ -38,10 +38,11 @@ const Header = () => {
 
     const handleGptSearch = () => {
         dispatch(toggleGptSearch());
+        navigate(!showGPTButton ? "gpt-search" : -1);
     }
 
     return (
-        <header className="px-20 py-4 bg-black flex justify-between">
+        <header className={`px-20 py-4 bg-transparent absolute top-0 ${user && "bg-black"}  flex justify-between`}>
             <img className={`w-2/12 ${user && "w-[10%]"}`} src={NETFLIX_LOGO} alt="Netflix Logo" />
             {user && <nav className="flex items-center gap-8">
                 <button onClick={()=> handleGptSearch()} className="text-white font-semibold text-xl bg-purple-600 px-4 py-2 rounded-md cursor-pointer z-10">

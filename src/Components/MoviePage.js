@@ -2,6 +2,8 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import useMovieDetails from '../hooks/useMovieDetails';
 import { useSelector } from 'react-redux';
+import MovieProductionsCompanies from './MovieProductionsCompanies';
+import MovieImageSlider from './MovieImageSlider';
 
 const MoviePage = () => {
 
@@ -11,8 +13,8 @@ const MoviePage = () => {
     const { movieDetails } = useSelector(store => store?.moviedetail)
     if (!movieDetails) return;
     console.log(movieDetails);
-    const { title, original_language,
-        revenue, status, release_date, genres, overview, poster_path, budget, homepage, production_companies, production_countries, spoken_languages, vote_average
+    const { title,
+        revenue, status, release_date, genres, overview, poster_path, budget, homepage, production_companies, production_countries, spoken_languages, vote_average, tagline
     } = movieDetails;
 
     return (
@@ -61,6 +63,13 @@ const MoviePage = () => {
                             <h2 className='bg-[#E1FFBB] text-[#074799] font-bold px-2 py-[2px] text-lg cursor-pointer hover:text-[#175799] hover:bg-[#E1F1B1]' key={item?.id}># {item?.name}</h2>
                         ))}
                     </div>
+                    {/** Tagline */}
+                    <div className='flex gap-10'>
+                        <h5 className='py-[2px] text-lg space-x-5'>
+                            <span className='text-[#FF8000] mr-5'>Tagline</span>:
+                            <span className='text-[#79D7BE] bg-zinc-800 px-2 text-lg'>{tagline}</span>
+                        </h5>
+                    </div>
 
                     {/** overview/play */}
                     <p className='text-justify mt-5'>{overview}</p>
@@ -69,6 +78,10 @@ const MoviePage = () => {
                     </button>
                 </div>
             </article>
+            <MovieImageSlider />
+            <MovieProductionsCompanies 
+            production_companies={production_companies} 
+            production_countries={production_countries} />
         </div>
     );
 }

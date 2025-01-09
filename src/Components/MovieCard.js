@@ -5,6 +5,7 @@ const MovieCard = ({ movie }) => {
     const navigate = useNavigate();
 
     const handleClickMoviePage = (elem) => {
+        window.scrollTo({ top: 0});
         navigate("/browse/movie-info",{ state: elem?.id});
     }
 

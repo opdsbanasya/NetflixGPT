@@ -20,8 +20,8 @@ const MoviePage = () => {
                 <div className='w-3/12 h-[60vh] bg-zinc-50'>
                     <img className='w-full' src={"https://image.tmdb.org/t/p/w220_and_h330_face" + poster_path} alt="Mufasa: The Lion King" />
                 </div>
-                <div className='w-7/12 space-y-3'>
-                    <h2 className='text-5xl font-serif font-bold mb-6'>{title}</h2>
+                <div className='w-7/12'>
+                    <h2 className='text-4xl font-bold'>Mufasa: The Lion King</h2>
                     <div className='flex gap-5'>
                         <h5 className='bg-slate-700 px-2 py-[2px]'>lang: {original_language}</h5>
                         <h5 className='bg-slate-700 px-2 py-[2px]'>{revenue}</h5>

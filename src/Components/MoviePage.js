@@ -53,7 +53,8 @@ const MoviePage = () => {
                         </h5>
                         <h5 className='px-2 py-[2px] text-lg space-x-5'>
                             <span className='text-[#FF8000] mr-5'>Revenue</span>:
-                            <span className='text-[#79D7BE] bg-zinc-800 px-2 text-lg'>{Math.floor(revenue/1000000)}+ M</span>
+                            <span className='text-[#79D7BE] bg-zinc-800 px-2 text-lg'>
+                                {Math.floor(tagline/1000000)}+ M</span>
                         </h5>
                     </div>
 
@@ -64,12 +65,12 @@ const MoviePage = () => {
                         ))}
                     </div>
                     {/** Tagline */}
-                    <div className='flex gap-10'>
+                    {tagline && <div className='flex gap-10'>
                         <h5 className='py-[2px] text-lg space-x-5'>
                             <span className='text-[#FF8000] mr-5'>Tagline</span>:
                             <span className='text-[#79D7BE] bg-zinc-800 px-2 text-lg'>{tagline}</span>
                         </h5>
-                    </div>
+                    </div>}
 
                     {/** overview/play */}
                     <p className='text-justify mt-5'>{overview}</p>

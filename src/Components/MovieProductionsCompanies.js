@@ -10,8 +10,8 @@ const MovieProductionsCompanies = ({ production_companies, production_countries 
                     className='flex flex-col items-center gap-2 '
                 >
                     <div className='w-5/12 bg-[#C1D8C3] p-1'>
-                        {company?.logo_path && <img src={`https://image.tmdb.org/t/p/w220_and_h330_face` + company?.logo_path}
-                            className='w-full mix-blend-color-burn hover:scale-95 cursor-pointer' 
+                        {<img src={company?.logo_path ? `https://image.tmdb.org/t/p/w220_and_h330_face` + company?.logo_path : production_company_logo}
+                            className={`w-full ${company?.logo_path && "mix-blend-color-burn"}  hover:scale-95 cursor-pointer`}
                             alt='{company?.name}' />}
                     </div>
                     <h5 className='production-name '>{company?.name}</h5>

@@ -5,7 +5,7 @@ const MovieCard = ({ movie }) => {
     const navigate = useNavigate();
 
     const handleClickMoviePage = (elem) => {
-        navigate("movie-info",{ state: elem?.id});
+        navigate("/browse/movie-info",{ state: elem?.id});
     }
 
     if (!movie?.poster_path) return null;

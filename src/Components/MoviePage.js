@@ -18,7 +18,7 @@ const MoviePage = () => {
                     <image src="https://image.tmdb.org/t/p/w220_and_h330_face/lurEK87kukWNaHd0zYnsi3yzJrs.jpg" alt="Mufasa: The Lion King" />
                 </div>
                 <div className='w-7/12'>
-                    <h2 className='text-4xl font-bold'>Mufasa: The Lion King</h2>
+                    <h2 className='text-4xl font-bold'>The Lion King</h2>
                     <div className='flex gap-5'>
                         <h5>language: en</h5>
                         <h5>US</h5>

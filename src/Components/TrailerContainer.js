@@ -17,7 +17,7 @@ const TrailerContainer = () => {
     return (
         <div className="relative -z-10 overflow-x-hidden">
             <TitleOfMainMovie title={original_title} overview={overview} />
-            <VideoBackground movieId={id} />
+            <VideoBackground movieId={id} isMoviePage={false} />
         </div>
     );
 }

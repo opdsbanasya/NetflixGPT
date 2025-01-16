@@ -1,9 +1,10 @@
 import { useDispatch } from "react-redux";
+import { addMovieTrailerVideo, addTrailerVideo } from "../store/trailerSlice";
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utils/constant";
-import { addTrailerVideo } from "../store/trailerSlice";
 
-const useMovieTrailer = (movieId) => {
+
+const useMovieTrailer = (movieId, isMoviePage) => {
     const dispatch = useDispatch();
 
     const getMovieVideo = async () => {
@@ -15,7 +16,7 @@ const useMovieTrailer = (movieId) => {
         const trailer = trailerVideos.length > 0 ? trailerVideos[0] : json.results[0];
         // console.log(trailer);
 
-        dispatch(addTrailerVideo(trailer));
+        dispatch(isMoviePage ? addMovieTrailerVideo(trailer) : addTrailerVideo(trailer));
 
     }
 

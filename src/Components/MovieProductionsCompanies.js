@@ -7,6 +7,7 @@ const MovieProductionsCompanies = ({ production_companies, production_countries 
             <h3 className='w-11/12 mx-auto text-2xl py-5 mb-5'>Productions Companies</h3>
             <div className='flex items-center justify-center gap-10'>
                 {production_companies.map(company => <div
+                    key={company?.id}
                     className='flex flex-col items-center gap-2 '
                 >
                     <div className='w-5/12 bg-[#C1D8C3] p-1'>

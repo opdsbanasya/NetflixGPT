@@ -3,9 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useMovieDetails from '../hooks/useMovieDetails';
 import { useSelector } from 'react-redux';
 import MovieProductionsCompanies from './MovieProductionsCompanies';
-import MovieImageSlider from './MovieImageSlider';
 import VideoBackground from './VideoBackground';
-import Credits from './Credits';
+import Cast from './Casts';
 
 const MoviePage = () => {
     const navigate = useNavigate();
@@ -19,7 +18,7 @@ const MoviePage = () => {
         revenue, status, release_date, genres, overview, poster_path, budget, homepage, production_companies, production_countries, spoken_languages, vote_average, tagline
     } = movieDetails;
 
-    const handlBackButton = () => {
+    const handleBackButton = () => {
         navigate(-1);
         window.scrollTo({ top: 0 });
     }
@@ -28,7 +27,7 @@ const MoviePage = () => {
         <div className='w-full bg-black text-white pt-20 '>
             <div className='w-11/12 mx-auto px-10 py-5'>
                 <button className='px-4 py-2 bg-purple-500 text-lg font-semibold rounded-lg hover:bg-purple-400'
-                    onClick={handlBackButton}
+                    onClick={handleBackButton}
                     >Back
                 </button>
             </div>
@@ -93,6 +92,7 @@ const MoviePage = () => {
                 </div>
             </article>
             {/* <MovieImageSlider movieId={id} /> */}
+            <Cast movieId={id} />
             <MovieProductionsCompanies
                 production_companies={production_companies}
                 production_countries={production_countries} />

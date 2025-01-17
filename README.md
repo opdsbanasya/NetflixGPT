@@ -1,7 +1,7 @@
 # NetflixGPT
 A GPT based chatbot for Netflix
 
-## CheckOut [NetflixGPT](Production)
+## CheckOut [NetflixGPT](https://netflixgpt-ec55f.web.app)
 ## Features
 - Sign in / Sign up
     - form

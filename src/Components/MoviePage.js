@@ -1,13 +1,14 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useMovieDetails from '../hooks/useMovieDetails';
 import { useSelector } from 'react-redux';
 import MovieProductionsCompanies from './MovieProductionsCompanies';
 import MovieImageSlider from './MovieImageSlider';
 import VideoBackground from './VideoBackground';
+import Credits from './Credits';
 
 const MoviePage = () => {
-
+    const navigate = useNavigate();
     const { state } = useLocation() || {};
     useMovieDetails(state);
 
@@ -18,8 +19,19 @@ const MoviePage = () => {
         revenue, status, release_date, genres, overview, poster_path, budget, homepage, production_companies, production_countries, spoken_languages, vote_average, tagline
     } = movieDetails;
 
+    const handlBackButton = () => {
+        navigate(-1);
+        window.scrollTo({ top: 0 });
+    }
+
     return (
         <div className='w-full bg-black text-white pt-20 '>
+            <div className='w-11/12 mx-auto px-10 py-5'>
+                <button className='px-4 py-2 bg-purple-500 text-lg font-semibold rounded-lg hover:bg-purple-400'
+                    onClick={handlBackButton}
+                    >Back
+                </button>
+            </div>
             <article className='w-11/12 min-h-[80vh] mx-auto px-10 py-5 flex items-start gap-20'>
                 <div className='w-3/12 h-[60vh] bg-zinc-50'>
                     <img className='w-full' src={"https://image.tmdb.org/t/p/w220_and_h330_face" + poster_path} alt={title} />
@@ -50,12 +62,12 @@ const MoviePage = () => {
                     <div className='flex gap-10'>
                         <h5 className='py-[2px] text-lg space-x-5'>
                             <span className='text-[#FF8000] mr-5'>Budget</span>:
-                            <span className='text-[#79D7BE] bg-zinc-800 px-2 text-lg'>{Math.floor(budget/1000000)}+ M</span>
+                            <span className='text-[#79D7BE] bg-zinc-800 px-2 text-lg'>{Math.floor(budget / 1000000)}+ M</span>
                         </h5>
                         <h5 className='px-2 py-[2px] text-lg space-x-5'>
                             <span className='text-[#FF8000] mr-5'>Revenue</span>:
                             <span className='text-[#79D7BE] bg-zinc-800 px-2 text-lg'>
-                                {Math.floor(revenue/1000000)}+ M</span>
+                                {Math.floor(revenue / 1000000)}+ M</span>
                         </h5>
                     </div>
 
@@ -80,15 +92,15 @@ const MoviePage = () => {
                     </button>
                 </div>
             </article>
-            <MovieImageSlider />
-            <MovieProductionsCompanies 
-            production_companies={production_companies} 
-            production_countries={production_countries} />
+            {/* <MovieImageSlider movieId={id} /> */}
+            <MovieProductionsCompanies
+                production_companies={production_companies}
+                production_countries={production_countries} />
             <div className='w-11/12 mx-auto px-10'>
                 <h3 className='w-11/12 mx-auto text-2xl pt-5 mb-5'>Trailer</h3>
                 <VideoBackground movieId={id} isMoviePage={true} />
             </div>
-            
+
         </div>
     );
 }

@@ -32,7 +32,7 @@ const MoviePage = () => {
                 </button>
             </div>
             <article className='w-11/12 min-h-[80vh] mx-auto px-10 py-5 flex items-start gap-20'>
-                <div className='w-3/12 h-[60vh] bg-zinc-50'>
+                <div className='w-3/12 rounded-lg overflow-hidden'>
                     <img className='w-full' src={"https://image.tmdb.org/t/p/w220_and_h330_face" + poster_path} alt={title} />
                 </div>
                 <div className='w-7/12 space-y-7'>

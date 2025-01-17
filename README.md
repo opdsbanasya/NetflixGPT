@@ -1,5 +1,7 @@
 # NetflixGPT
 A GPT based chatbot for Netflix
+
+## CheckOut [NetflixGPT](Production)
 ## Features
 - Sign in / Sign up
     - form
@@ -55,3 +57,12 @@ A GPT based chatbot for Netflix
 - selecting movie from the list and displaying on the screen
 - Adding Movie Details Page
 - Updating Routes for gpt and movies page
+- Creating Movie Page
+- Building UI for Movie Page
+- Creating useMovieDetail hook to fetch movie detail
+- creating movieDetailSlice and adding it to store
+- adding movie detail data into store
+- creating useCast hook to fetch movie cast data
+- adding it into movieDetailSlice
+- Show all data on UI
+- Creating movie Production Company and Production Country strips

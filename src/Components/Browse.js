@@ -6,6 +6,7 @@ import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
+import Footer from "./Footer";
 
 const Browse = () => {
 
@@ -24,6 +25,7 @@ const Browse = () => {
         <div className="relative">
             <Header /> 
             <Outlet />
+            <Footer />
         </div>
     );
 }

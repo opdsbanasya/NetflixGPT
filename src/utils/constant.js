@@ -4,10 +4,3 @@ export const NETFLIX_LOGO = "https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-
 
 export const USER_ICON = "https://img.icons8.com/?size=100&id=13042&format=png&color=000000";
 
-export const API_OPTIONS = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMjA0N2Q0MTJlMGQ0YTlhY2JhNzQxMjI5M2M3MTcyNCIsIm5iZiI6MTcyNzAyODk1OC45MDMsInN1YiI6IjY2ZjA1ZWRlMGVhODBkMWZlMzhkODQyMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GLE1W97QiNEmTI92ZFD8Ig4bRMFGk3zJ9E45XdxKQn4'
-  }
-};

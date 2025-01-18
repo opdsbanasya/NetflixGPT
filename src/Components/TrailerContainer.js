@@ -12,11 +12,13 @@ const TrailerContainer = () => {
     const mainMovie = nowPlayingMovies[movieIndex];
     if(!mainMovie) return;
 
-    const { original_title, overview, id } = mainMovie;
+    console.log(mainMovie);
+    
+    const { title, overview, id } = mainMovie;
 
     return (
         <div className="relative -z-10 overflow-x-hidden">
-            <TitleOfMainMovie title={original_title} overview={overview} />
+            <TitleOfMainMovie title={title} overview={overview} />
             <VideoBackground movieId={id} isMoviePage={false} />
         </div>
     );

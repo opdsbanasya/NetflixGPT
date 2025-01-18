@@ -90,7 +90,7 @@ const Login = () => {
                     </div>
                     <input type="submit" onClick={() => handleSubmit()} value={formType === "signin" ? "Sign in" : "Sign up"} className="py-2 px-4 text-white rounded-md font-semibold bg-red-700 cursor-pointer" />
                 </form>
-                <h3>{formType === "signin" ? "New to Netflix?" : "Alraedy have account?"} <span onClick={() => handleFormType()} className="font-semibold hover:underline cursor-pointer">Sign {formType === "signin" ? "up" : "in"} now</span>.</h3>
+                <h3>{formType === "signin" ? "New to Netflix?" : "Already have account?"} <span onClick={() => handleFormType()} className="font-semibold hover:underline cursor-pointer">Sign {formType === "signin" ? "up" : "in"}</span>.</h3>
             </div>
         </section>
     );

@@ -67,18 +67,18 @@ const Login = () => {
     }
 
     return (
-        <section className="relative ">
+        <section className="relative">
             <Header />
             <div className="h-screen w-full overflow-hidden">
-                <img src={MAIN_BG_IMG} className="w-full object-cover object-center" alt="bg-img" />
+                <img src={MAIN_BG_IMG} className="w-full h-full object-cover object-center" alt="bg-img" />
             </div>
-            <div className="w-[32%] absolute text-white top-[38%] left-1/2 -translate-x-1/2 -translate-y-[38%] bg-black bg-opacity-85 py-10 px-16 space-y-10">
+            <div className="w-[85%] md:w-[65%] lg:w-[32%] absolute text-white top-[38%] left-1/2 -translate-x-1/2 -translate-y-[38%] bg-black bg-opacity-85 py-10 px-[44px] md:px-16 space-y-10 rounded-lg">
                 <h2 className=" text-3xl font-semibold">{formType === "signin" ? "Sign in" : "Sign up"}</h2>
-                <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-10 ">
+                <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-8 md:gap-10 lg:gap-10 ">
                     {formType === "signup" && <div className="w-full space-y-2">
                         <input ref={name} className="w-full px-4 py-4 text-white outline-none border border-gray-400 rounded-md bg-black bg-opacity-50" type="text" placeholder="Full name" required />
                         <p className="absolute text-red-500 text-xs">{errorMessage?.nameResult && errorMessage.nameResult}</p>
-                    </div>
+                    </div> 
                     }
                     <div className="w-full space-y-2">
                         <input ref={email} className="w-full px-4 py-4 text-white outline-none border border-gray-400 rounded-md bg-black bg-opacity-50" type="email" placeholder="Email" />

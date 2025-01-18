@@ -42,8 +42,8 @@ const Header = () => {
     }
 
     return (
-        <header className={`px-20 py-4 bg-transparent absolute top-0 ${user && "bg-black"}  flex justify-between`}>
-            <img className={`w-2/12 ${user && "w-[10%]"}`} src={NETFLIX_LOGO} alt="Netflix Logo" />
+        <header className={`px-10 md:px-20 py-4 bg-transparent absolute top-0 ${user && "bg-black"}  flex justify-between`}>
+            <img className={`w-6/12 lg:w-2/12 mb-10 md:mb-0${user && "md:w-[10%]"}`} src={NETFLIX_LOGO} alt="Netflix Logo" />
             {user && <nav className="flex items-center gap-8">
                 <button onClick={()=> handleGptSearch()} className="text-white font-semibold text-xl bg-purple-600 px-4 py-2 rounded-md cursor-pointer z-10">
                     {showGPTButton ? "Close GPT" : "GPT Search"}

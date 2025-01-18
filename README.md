@@ -66,3 +66,4 @@ A GPT based chatbot for Netflix
 - adding it into movieDetailSlice
 - Show all data on UI
 - Creating movie Production Company and Production Country strips
+- Adding Footer

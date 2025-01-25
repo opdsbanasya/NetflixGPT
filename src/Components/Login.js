@@ -21,6 +21,8 @@ const Login = () => {
     const handleFormType = () => {
         setFormType(formType === "signin" && "signup" || formType === "signup" && "signin")
         setErrorMessage(null);
+        email.current.value = "";
+        password.current.value = "";
     }
 
     const handleSubmit = () => {

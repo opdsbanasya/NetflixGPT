@@ -22,7 +22,7 @@ const Browse = () => {
 
 
     return (
-        <div className="relative">
+        <div className="relative overflow-x-hidden">
             <Header /> 
             <Outlet />
             <Footer />

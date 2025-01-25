@@ -17,7 +17,7 @@ const TrailerContainer = () => {
     const { title, overview, id } = mainMovie;
 
     return (
-        <div className="relative -z-10 overflow-x-hidden">
+        <div className="w-screen h-1/4 md:h-[42vh] lg:h-screen static md:relative -z-10">
             <TitleOfMainMovie title={title} overview={overview} />
             <VideoBackground movieId={id} isMoviePage={false} />
         </div>

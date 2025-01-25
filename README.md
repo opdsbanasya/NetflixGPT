@@ -4,18 +4,35 @@ A GPT based chatbot for Netflix
 ## CheckOut [NetflixGPT](https://netflixgpt-ec55f.web.app)
 ## Features
 - Sign in / Sign up
-    - form
-    - redirect to Browse
+|---- form
+|---- redirect to Browse
 - Browse
-    - Header
-    - Main Section
-        - Main Container
-            - Trailer in background
-            - Title & Description
-        - Secondary Container
-            - Movie List
-                - Movie Cards
-1.05.00
+|---- Header
+|---|---- Logo
+|---|---- GPT Search Button
+|---|---- Profile Icon
+|---|---- Sign Out
+|---- Main Section
+|---|---- Main Container
+|---|---|---- Trailer in background
+|---|---|---- Title & Description
+|---|---- Secondary Container
+|---|---|---- Movie List
+|---|---|---|---- Movie Cards
+|---- Movie Page
+|---|---- Movie Details
+|---|---|---- Movie Poster
+|---|---|---- Movie Title
+|---|---|---- Movie Description
+|---|---|---- Movie Cast
+|---|---|---- Movie Production Company
+|---|---|---- Movie Production Country
+|---|---- Movie Trailer
+|---|---- Footer
+|---- GPT
+|---|---- GPT Search Bar
+|---|---- GPT Movie Suggestions
+|---- Footer
 
 ## STEPS
 - Create a React App / Parcel App
@@ -67,3 +84,5 @@ A GPT based chatbot for Netflix
 - Show all data on UI
 - Creating movie Production Company and Production Country strips
 - Adding Footer
+- Adding icons
+- Resplonsive Design

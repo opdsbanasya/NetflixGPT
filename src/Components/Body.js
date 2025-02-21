@@ -4,8 +4,13 @@ import Browse from "./Browse";
 import MoviePage from "./MoviePage";
 import GPTSearch from "./GPTSearch";
 import MainContainer from "./MainContainer";
+import { useEffect } from "react";
 
 const Body = () => {
+
+    useEffect(()=>{
+        setTimeout(()=> console.clear(), 10)
+    },[])
 
     const appRouter = createBrowserRouter([
         {

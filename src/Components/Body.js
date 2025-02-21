@@ -7,7 +7,6 @@ import MainContainer from "./MainContainer";
 
 const Body = () => {
 
-
     const appRouter = createBrowserRouter([
         {
             path: "/",

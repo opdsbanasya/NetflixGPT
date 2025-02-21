@@ -10,16 +10,10 @@ import Footer from "./Footer";
 
 const Browse = () => {
 
-    
-    
     useNowPlayingMovies();
     usePopularMovies();
     useTopRatedMovies();
     useUpcomingMovies();
-
-    // const nowPlayingMovies = useSelector(store => store.movie?.nowPlayingMovies);
-    // console.log(nowPlayingMovies);
-
 
     return (
         <div className="relative overflow-x-hidden">

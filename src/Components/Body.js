@@ -5,6 +5,7 @@ import MoviePage from "./MoviePage";
 import GPTSearch from "./GPTSearch";
 import MainContainer from "./MainContainer";
 import { useEffect } from "react";
+import ErrorPage from "./ErrorPage";
 
 const Body = () => {
 
@@ -15,7 +16,8 @@ const Body = () => {
     const appRouter = createBrowserRouter([
         {
             path: "/",
-            element: <Login />
+            element: <Login />,
+            errorElement: <ErrorPage />
         },
         {
             path: "/browse",

@@ -35,6 +35,16 @@ A GPT based chatbot for Netflix
         - GPT Movie Suggestions
     - Footer
 
+## New Features
+- MultiLanguage Support
+- Voice assistant
+- Disaplay movies according to user's preference and mood
+- Mood detection by voice and face
+
+## References
+- [Face emotion detection](https://youtu.be/NG5Vi8zrqMM?feature=shared)
+- [Voice emotion detection](https://youtu.be/v4wvbw5BwnA?feature=shared)
+
 ## STEPS
 - Create a React App / Parcel App
 - Set up tailwindcss

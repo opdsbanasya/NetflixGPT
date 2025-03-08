@@ -4,3 +4,12 @@ export const NETFLIX_LOGO = "https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-
 
 export const USER_ICON = "https://img.icons8.com/?size=100&id=13042&format=png&color=000000";
 
+export const RULES = {
+  name: "Name must contains atleast 1 space",
+  password: [
+    "Must contains 1 upper case",
+    "Must contains 1 symbol",
+    "Must contains 1 number",
+    "Length must not be less than 8"
+  ]
+}

@@ -2,14 +2,14 @@ import Groq from "groq-sdk";
 
 const groq = new Groq(
     {
-        apiKey: process.env['GROQ_API_KEY'], // This is the default and can be omitted
+        apiKey: process.env['NEXT_PUBLIC_GROQ_API'], // This is the default and can be omitted
         dangerouslyAllowBrowser: true
     },
 );
 
 export const llamaModel = async (query) => {
 
-    llamaResult = await groq.chat.completions.create({
+    const llamaResult = await groq.chat.completions.create({
         messages: [
             {
                 role: "user",

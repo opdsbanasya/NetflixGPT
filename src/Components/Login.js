@@ -1,3 +1,4 @@
+"use client";
 import { useRef, useState } from "react";
 import { MAIN_BG_IMG, RULES, USER_ICON } from "../utils/constant";
 import Header from "./Header";

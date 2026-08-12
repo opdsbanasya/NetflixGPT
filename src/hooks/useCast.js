@@ -1,7 +1,8 @@
+"use client";
 import { useEffect } from "react";
-import { API_OPTIONS } from "../utils/constant"
 import { useDispatch } from "react-redux";
 import { addCasts } from "../store/movieDetailSlice";
+import { API_OPTIONS } from "../utils/tmdb";
 
 const useCast = (movieId) => {
 

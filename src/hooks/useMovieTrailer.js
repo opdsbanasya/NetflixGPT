@@ -1,7 +1,9 @@
+"use client";
 import { useDispatch } from "react-redux";
 import { addMovieTrailerVideo, addTrailerVideo } from "../store/trailerSlice";
 import { useEffect } from "react";
-import { API_OPTIONS } from "../utils/constant";
+import { API_OPTIONS } from "../utils/tmdb";
+
 
 
 const useMovieTrailer = (movieId, isMoviePage) => {

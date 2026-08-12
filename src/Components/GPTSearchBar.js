@@ -1,6 +1,8 @@
+"use client";
 import React, { useRef } from 'react';
 import { llamaModel } from '../utils/llama';
-import { API_OPTIONS } from "../utils/constant";
+import { API_OPTIONS } from "../utils/tmdb";
+
 import { addGPTMovieResult } from '../store/gptSlice';
 import { useDispatch } from 'react-redux';
 

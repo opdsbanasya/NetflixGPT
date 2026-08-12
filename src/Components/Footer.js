@@ -1,22 +1,28 @@
+"use client";
+
 import React from 'react'
 import { NETFLIX_LOGO } from '../utils/constant'
 import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/navigation'
 import { toggleGptSearch } from '../store/gptSlice'
 import { IoIosArrowUp } from 'react-icons/io'
 
 const Footer = () => {
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const {showGPTButton} = useSelector(store => store.gptsearch);
 
     const handleGptSearch = () => {
         dispatch(toggleGptSearch());
         window.scrollTo({ top: 0});
-        navigate(!showGPTButton ? "gpt-search" : -1);
+        if (!showGPTButton) {
+            router.push("gpt-search");
+        } else {
+            router.back();
+        }
     }
     
     const handleBottomToTop = () => {

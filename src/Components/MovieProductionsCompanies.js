@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import production_company_logo from "../assets/production_company_logo.png"
 

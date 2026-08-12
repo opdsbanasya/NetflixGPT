@@ -1,3 +1,4 @@
+"use client";
 import React from 'react'
 import useCast from '../hooks/useCast';
 import { useSelector } from 'react-redux';

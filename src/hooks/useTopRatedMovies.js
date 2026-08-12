@@ -1,5 +1,7 @@
+"use client";
 import { useDispatch } from "react-redux";
-import { API_OPTIONS } from "../utils/constant";
+import { API_OPTIONS } from "../utils/tmdb";
+
 import { addTopRatedMovies } from "../store/movieSlice";
 import { useEffect } from "react";
 

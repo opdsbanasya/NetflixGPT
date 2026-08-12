@@ -1,12 +1,14 @@
-import { useNavigate } from "react-router-dom";
+"use client";
+
+import { useRouter } from "next/navigation";
 
 const MovieCard = ({ movie }) => {
 
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const handleClickMoviePage = (elem) => {
         window.scrollTo({ top: 0});
-        navigate("/browse/movie-info",{ state: elem?.id});
+        router.push("/browse/movie-info?id=" + elem?.id);
     }
 
     if (!movie?.poster_path) return null;

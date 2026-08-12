@@ -1,14 +1,17 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+"use client";
+
+import React, { Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import useMovieDetails from '../hooks/useMovieDetails';
 import { useSelector } from 'react-redux';
 import MovieProductionsCompanies from './MovieProductionsCompanies';
 import VideoBackground from './VideoBackground';
 import Cast from './Casts';
 
-const MoviePage = () => {
-    const navigate = useNavigate();
-    const { state } = useLocation() || {};
+const MoviePageContent = () => {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const state = searchParams.get('id');
     useMovieDetails(state);
 
     const { movieDetails } = useSelector(store => store?.moviedetail)
@@ -19,7 +22,7 @@ const MoviePage = () => {
     } = movieDetails;
 
     const handleBackButton = () => {
-        navigate(-1);
+        router.back();
         window.scrollTo({ top: 0 });
     }
 
@@ -104,4 +107,13 @@ const MoviePage = () => {
         </div>
     );
 }
+
+const MoviePage = () => {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <MoviePageContent />
+        </Suspense>
+    );
+}
+
 export default MoviePage;

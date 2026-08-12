@@ -1,7 +1,9 @@
+"use client";
+
 // import { NETFLIX_LOGO } from "../utils/constant";
 
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { auth } from "../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -14,7 +16,7 @@ import { IoCloseSharp } from "react-icons/io5";
 
 const Header = () => {
 
-    const navigate = useNavigate();
+    const router = useRouter();
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user)
     const { showGPTButton } = useSelector(store => store.gptsearch);
@@ -24,10 +26,10 @@ const Header = () => {
             if (user) {
                 const { uid, email, displayName, photoURL } = user;
                 dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
-                navigate("/browse");
+                router.push("/browse");
             } else {
                 dispatch(removeUser());
-                navigate("/");
+                router.push("/");
             }
         })
     }, [])
@@ -41,7 +43,11 @@ const Header = () => {
 
     const handleGptSearch = () => {
         dispatch(toggleGptSearch());
-        navigate(!showGPTButton ? "gpt-search" : -1);
+        if (!showGPTButton) {
+            router.push("gpt-search");
+        } else {
+            router.back();
+        }
     }
 
     return (

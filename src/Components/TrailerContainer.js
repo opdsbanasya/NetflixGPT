@@ -1,3 +1,4 @@
+"use client";
 import { useSelector } from "react-redux";
 import TitleOfMainMovie from "./TitleOfMainMovie";
 import VideoBackground from "./VideoBackground";

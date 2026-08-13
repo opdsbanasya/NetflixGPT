@@ -30,23 +30,23 @@ const Footer = () => {
     }
 
     return (
-        <section className='bg-black py-10'>
-            <div className='w-11/12 lg:w-10/12 mx-auto px-10 md:px-16 py-7 md:py-14 bg-purple-300 text-white flex flex-col md:flex-row md:items-center justify-center gap-5 md:gap-10 rounded-md'>
-                <div className='w-full md:w-1/3'>
-                    <img className={`w-6/12`} src={NETFLIX_LOGO} alt="Netflix Logo" />
+        <section className='bg-[#050505] py-10 border-t border-white/5'>
+            <div className='w-11/12 lg:w-10/12 mx-auto px-10 md:px-16 py-7 md:py-14 bg-[#111111] border border-white/5 text-white flex flex-col md:flex-row md:items-center justify-center gap-5 md:gap-10 rounded-2xl'>
+                <div className='w-full md:w-1/3 flex justify-center md:justify-start'>
+                    <img className={`w-32 md:w-48`} src={NETFLIX_LOGO} alt="Netflix Logo" />
                 </div>
-                <div className='w-full md:w-1/3 text-black md:text-xl space-y-2 md:space-y-4 lg:font-semibold'>
-                    <h5 onClick={() => handleGptSearch()} className='cursor-pointer underline hover:no-underline hover:text-blue-500'>GPT Search</h5>
-                    <h5 className='cursor-pointer underline hover:no-underline hover:text-blue-500'>Contact Us</h5>
-                    <h5 className='cursor-pointer underline hover:no-underline hover:text-blue-500'>About us</h5>
+                <div className='w-full md:w-1/3 text-white/70 md:text-lg space-y-2 md:space-y-4 lg:font-semibold flex flex-col items-center md:items-start'>
+                    <h5 onClick={() => handleGptSearch()} className='cursor-pointer hover:text-netflix-primary transition-colors'>GPT Search</h5>
+                    <h5 className='cursor-pointer hover:text-netflix-primary transition-colors'>Contact Us</h5>
+                    <h5 className='cursor-pointer hover:text-netflix-primary transition-colors'>About us</h5>
                 </div>
-                <div className='w-full md:w-1/3 flex md:flex-col items-center md:items-start text-black text-xl gap-5 md:gap-4 lg:font-semibold'>
-                    <h5 className='flex items-center gap-3 cursor-pointer underline hover:no-underline hover:text-blue-500'><FaFacebook className='text-2xl hover:text-blue-500' /> <span className='hidden md:block'>Facebook</span></h5>
-                    <h5 className='flex items-center gap-3 cursor-pointer underline hover:no-underline hover:text-[#D94D64]'><FaInstagram className='text-2xl hover:text-blue-500' /> <span className='hidden md:block'>Instagram</span></h5>
-                    <h5 className='flex items-center gap-3 cursor-pointer underline hover:no-underline hover:text-blue-500'><FaLinkedin className='text-2xl hover:text-blue-500' /> <span className='hidden md:block'>LinkedIn</span></h5>
+                <div className='w-full md:w-1/3 flex md:flex-col items-center md:items-start text-white/70 text-base md:text-lg gap-5 md:gap-4 lg:font-semibold'>
+                    <h5 className='flex items-center gap-3 cursor-pointer hover:text-netflix-primary transition-colors'><FaFacebook className='text-2xl' /> <span className='hidden md:block'>Facebook</span></h5>
+                    <h5 className='flex items-center gap-3 cursor-pointer hover:text-netflix-primary transition-colors'><FaInstagram className='text-2xl' /> <span className='hidden md:block'>Instagram</span></h5>
+                    <h5 className='flex items-center gap-3 cursor-pointer hover:text-netflix-primary transition-colors'><FaLinkedin className='text-2xl' /> <span className='hidden md:block'>LinkedIn</span></h5>
                 </div>
-                <div onClick={handleBottomToTop} className='fixed bottom-5 right-4'>
-                    <button className='p-3 bg-[#FFFBCA] rounded-full text-black text-xl'><IoIosArrowUp /></button>
+                <div className='fixed bottom-5 right-4 z-50'>
+                    <button onClick={handleBottomToTop} className='p-3 bg-netflix-primary hover:bg-netflix-secondary rounded-full text-white shadow-lg shadow-netflix-primary/20 transition-all text-xl'><IoIosArrowUp /></button>
                 </div>
             </div> 
         </section>

@@ -8,3 +8,7 @@
 .env
 
 .next
+.env.local
+.env.*.local
+.vercel
+*.log

@@ -13,7 +13,7 @@ const Login = () => {
     const dispatch = useDispatch();
 
     const [formType, setFormType] = useState("signin");
-    const [errorMessage, setErrorMessage] = useState(null);
+    const [errorMessage, setErrorMessage] = useState({});
     const [showRules, setshowRules] = useState(true)
 
     const name = useRef(null);
@@ -21,14 +21,14 @@ const Login = () => {
     const password = useRef(null);
 
     const handleFormType = () => {
-        setFormType(formType === "signin" && "signup" || formType === "signup" && "signin")
-        setErrorMessage(null);
-        email.current.value = "";
-        password.current.value = "";
+        setFormType(formType === "signin" ? "signup" : "signin")
+        setErrorMessage({});
+        if (email.current) email.current.value = "";
+        if (password.current) password.current.value = "";
     }
 
     const handleSubmit = () => {
-        const message = formValidation(formType === "signup" && name.current.value, email.current.value, password.current.value);
+        const message = formValidation(formType === "signup" && name.current?.value, email.current.value, password.current.value);
         setErrorMessage(message);
         if (Object.keys(message).length !== 0) return;
 
@@ -44,16 +44,11 @@ const Login = () => {
                         const { uid, email, displayName, photoURL } = auth.currentUser;
                         dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
                     }).catch((error) => {
-                        const errorCode = error.code;
-                        const FireErrorMessage = error.message;
-                        setErrorMessage({ signError: errorCode + " " + FireErrorMessage });
+                        setErrorMessage({ signError: error.code + " " + error.message });
                     });
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
-                    const FireErrorMessage = error.message;
-                    setErrorMessage({ signError: errorCode + " " + FireErrorMessage });
-                    console.log(errorMessage.signError);
+                    setErrorMessage({ signError: error.code + " " + error.message });
                 });
         } else {
             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
@@ -62,10 +57,7 @@ const Login = () => {
                     const user = userCredential.user;
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
-                    const FireErrorMessage = error.message;
-                    setErrorMessage(errorCode + " " + FireErrorMessage);
-                    alert("Invalid User");
+                    setErrorMessage({ signError: error.code + " " + error.message });
                 });
         }
     }
@@ -84,7 +76,7 @@ const Login = () => {
                             <input ref={name} className="w-full glass-input px-5 py-4 rounded-lg" type="text" placeholder="Full Name" required />
                             {errorMessage?.nameResult && <p className="absolute text-red-500 text-xs mt-1">{errorMessage.nameResult}</p>}
                             {showRules && !errorMessage?.nameResult && <p className="text-xs text-white/50 ml-1 mt-1">{RULES?.name}</p>}
-                        </div> 
+                        </div>
                     )}
                     <div className="w-full space-y-1 relative">
                         <input ref={email} className="w-full glass-input px-5 py-4 rounded-lg" type="email" placeholder="Email Address" required />
@@ -93,9 +85,10 @@ const Login = () => {
                     <div className="w-full space-y-1 relative">
                         <input ref={password} className="w-full glass-input px-5 py-4 rounded-lg" type="password" placeholder="Password" required />
                         {errorMessage?.passwordResult && <p className="absolute text-red-500 text-xs mt-1">{errorMessage.passwordResult}</p>}
-                        {showRules && formType === "signup" && !errorMessage?.nameResult && RULES?.password.map((rule, index)=> <p key={index} className="text-xs list-item ml-5 text-white/50">{rule}</p>)}
+                        {showRules && formType === "signup" && !errorMessage?.nameResult && RULES?.password.map((rule, index) => <p key={index} className="text-xs list-item ml-5 text-white/50">{rule}</p>)}
                     </div>
-                    <button type="submit" className="w-full py-4 text-white rounded-lg font-semibold bg-netflix-red hover:bg-red-700 transition-all shadow-lg hover:shadow-red-500/30 text-lg mt-4">
+                    {errorMessage?.signError && <p className="text-red-500 text-sm mt-2">{errorMessage.signError}</p>}
+                    <button type="submit" className="w-full py-4 text-white rounded-lg font-semibold bg-netflix-primary hover:bg-netflix-secondary transition-all shadow-lg hover:shadow-netflix-primary/30 text-lg mt-4">
                         {formType === "signin" ? "Sign In" : "Sign Up"}
                     </button>
                 </form>

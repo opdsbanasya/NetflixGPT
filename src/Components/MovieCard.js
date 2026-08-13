@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useMemo } from 'react';
 import { useRouter } from "next/navigation";
 
 const MovieCard = ({ movie }) => {
@@ -13,8 +14,11 @@ const MovieCard = ({ movie }) => {
 
     if (!movie?.poster_path) return null;
     
-    // Simulate an AI Match percentage for UI immersion
-    const matchPercent = Math.floor(Math.random() * (99 - 85 + 1) + 85);
+    // Generate deterministic match percent based on movie ID to prevent flickering
+    const matchPercent = useMemo(() => {
+        if (!movie?.id) return 94;
+        return 85 + (movie.id % 15);
+    }, [movie?.id]);
 
     return (
         <div

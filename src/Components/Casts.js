@@ -8,7 +8,7 @@ const Credits = ({ movieId }) => {
     useCast(movieId);
 
     const { movieCast } = useSelector(store => store?.moviedetail)
-    console.log(movieCast);
+
 
     if (!movieCast) return;
 

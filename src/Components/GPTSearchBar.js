@@ -1,7 +1,7 @@
 "use client";
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { llamaModel } from '../utils/llama';
-import { API_OPTIONS } from "../utils/tmdb";
+import { fetchFromTMDB } from "../utils/tmdb";
 import { addGPTMovieResult } from '../store/gptSlice';
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'next/navigation';
@@ -24,25 +24,17 @@ const GPTSearchBar = () => {
         { role: 'ai', text: 'Hi! I am MovieGPT. Describe what you want to watch or pick a suggestion below.' }
     ]);
 
-    useEffect(() => {
-        const query = searchParams.get('q');
-        if (query && searchInput.current) {
-            searchInput.current.value = query;
-            handleClickGPTSearch(query);
-        }
-    }, [searchParams]);
-
     const tmdbSearchData = async (movie) => {
-        const data = await fetch("https://api.themoviedb.org/3/search/movie?query="
-            + encodeURIComponent(movie) +
-            "&include_adult=false&language=en-US&page=1",
-            API_OPTIONS
-        );
-        const json = await data.json();
-        return json;
+        try {
+            const json = await fetchFromTMDB("/search/movie?query=" + encodeURIComponent(movie) + "&include_adult=false&language=en-US&page=1");
+            return json;
+        } catch (error) {
+            console.error("Failed to fetch search results from TMDB:", error);
+            return null;
+        }
     }
 
-    const handleClickGPTSearch = async (overrideQuery = null) => {
+    const handleClickGPTSearch = useCallback(async (overrideQuery = null) => {
         const userQuery = overrideQuery || searchInput.current?.value;
         if (!userQuery) return;
 
@@ -56,7 +48,8 @@ const GPTSearchBar = () => {
             const llamaResult = await llamaModel(prompt);
             let movieObjects = [];
             
-            const match = llamaResult.match(/\[([\s\S]*?)\]/);
+            // Greedy match to capture the entire JSON array, ignoring any prepended text
+            const match = llamaResult.match(/\[[\s\S]*\]/);
             if (!match) throw new Error("No JSON array found in response");
             
             movieObjects = JSON.parse(match[0]);
@@ -73,7 +66,15 @@ const GPTSearchBar = () => {
         } finally {
             setIsLoading(false);
         }
-    }
+    }, [dispatch]);
+
+    useEffect(() => {
+        const query = searchParams.get('q');
+        if (query && searchInput.current) {
+            searchInput.current.value = query;
+            handleClickGPTSearch(query);
+        }
+    }, [searchParams, handleClickGPTSearch]);
 
     return (
         <div className='w-full h-full flex flex-col p-6'>

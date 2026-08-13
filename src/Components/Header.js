@@ -22,7 +22,7 @@ const Header = () => {
     const { showGPTButton } = useSelector(store => store.gptsearch);
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 const { uid, email, displayName, photoURL } = user;
                 dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
@@ -31,8 +31,12 @@ const Header = () => {
                 dispatch(removeUser());
                 router.push("/");
             }
-        })
-    }, [])
+        });
+
+        // Cleanup subscription on unmount
+        return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const handleSignOut = () => {
         signOut(auth).then(() => { })
@@ -58,7 +62,7 @@ const Header = () => {
                 <button onClick={() => handleGptSearch()} className="group flex items-center gap-2 text-white/90 hover:text-white text-sm font-medium px-4 py-2 rounded-full glass-panel transition-all hover:bg-white/20">
                     {!showGPTButton ? (
                         <>
-                            <img className="w-5 h-5 opacity-90 group-hover:opacity-100 transition-opacity" src={gptIcon} alt="GPT Search" />
+                            <img className="w-5 h-5 opacity-90 group-hover:opacity-100 transition-opacity" src={gptIcon.src} alt="GPT Search" />
                             <span className="hidden md:block">AI Search</span>
                         </>
                     ) : (

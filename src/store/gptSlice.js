@@ -13,8 +13,8 @@ const gptSlice = createSlice({
         },
         // there can be add multiple data in store by same reducer
         addGPTMovieResult: (state, action) => {
-            const { movieName, movieResult } = action.payload;
-            state.movieName = movieName;
+            const { movieObjects, movieResult } = action.payload;
+            state.movieName = movieObjects; // Now holds array of {title, match, reason}
             state.movieResult = movieResult;
         }
     }

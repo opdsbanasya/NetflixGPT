@@ -17,7 +17,7 @@ export const llamaModel = async (query) => {
             },
         ],
 
-        model: "llama3-8b-8192",
+        model: "qwen/qwen3.6-27b",
 
         // Controls randomness: lowering results in less random completions.
         // As the temperature approaches zero, the model will become deterministic
@@ -26,7 +26,7 @@ export const llamaModel = async (query) => {
 
         // The maximum number of tokens to generate. Requests can use up to
         // 2048 tokens shared between prompt and completion.
-        max_tokens: 1024,
+        max_tokens: 4096,
 
         // Controls diversity via nucleus sampling: 0.5 means half of all
         // likelihood-weighted options are considered.
@@ -42,11 +42,11 @@ export const llamaModel = async (query) => {
         stream: false,
     });
 
-    if(!llamaResult) return;
-    const {content} = llamaResult?.choices[0]?.message;
+    if (!llamaResult) return;
+    const { content } = llamaResult?.choices[0]?.message;
 
     return content;
-    
+
 }
 
 export default groq;

@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import MovieProductionsCompanies from './MovieProductionsCompanies';
 import VideoBackground from './VideoBackground';
 import Cast from './Casts';
+import { motion } from 'framer-motion';
 
 const MoviePageContent = () => {
     const router = useRouter();
@@ -15,102 +16,174 @@ const MoviePageContent = () => {
     useMovieDetails(state);
 
     const { movieDetails } = useSelector(store => store?.moviedetail)
-    if (!movieDetails) return;
+    if (!movieDetails || String(movieDetails.id) !== state) {
+        return (
+            <div className="w-full h-screen bg-[#050505] flex justify-center items-center">
+                <div className="animate-pulse-slow text-white/50 text-xl font-light tracking-widest font-sora">Loading Details...</div>
+            </div>
+        );
+    }
 
-    const { id, title,
-        revenue, status, release_date, genres, overview, poster_path, budget, homepage, production_companies, production_countries, spoken_languages, vote_average, tagline
+    const { 
+        id, title, revenue, status, release_date, genres, overview, backdrop_path, poster_path, budget, homepage, 
+        production_companies, production_countries, spoken_languages, vote_average, tagline 
     } = movieDetails;
 
     const handleBackButton = () => {
         router.back();
-        window.scrollTo({ top: 0 });
     }
 
+    // Generate some fake AI insights based on genres
+    const fakeInsights = genres ? genres.map(g => `Features strong elements of ${g.name.toLowerCase()}`) : ["Complex storytelling", "Highly rated by users"];
+
     return (
-        <div className='w-full bg-black text-white pt-20 '>
-            <div className='w-full md:w-11/12 mx-auto px-10 py-5'>
-                <button className='px-2 md:px-4 py-1 md:py-2 bg-purple-500 text-sm ms:text-lg font-semibold rounded-lg hover:bg-purple-400'
-                    onClick={handleBackButton}
-                    >Back
-                </button>
-            </div>
-            <article className='w-full md:w-11/12 min-h-[80vh] mx-auto px-10 py-5 flex flex-col lg:flex-row items-start gap-20'>
-                <div className='w-11/12 lg:w-3/12 mx-auto'>
-                    <img className='w-full object-cover rounded-lg ' src={"https://image.tmdb.org/t/p/w220_and_h330_face" + poster_path} alt={title} />
+        <div className='w-full min-h-screen bg-[#050505] text-white overflow-x-hidden'>
+            {/* Cinematic Hero Section */}
+            <div className="relative w-full h-[60vh] md:h-[75vh]">
+                <div className="absolute inset-0">
+                    <img 
+                        src={`https://image.tmdb.org/t/p/original${backdrop_path || poster_path}`} 
+                        alt={title}
+                        className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/40 to-transparent" />
                 </div>
-                <div className='w-full md:px-8 lg:px-0 lg:w-7/12 space-y-2 md:space-y-5 lg:space-y-7'>
-                    <h2 className='text-3xl md:text-5xl lg:text-6xl font-bold font-serif mb-8 text-[#ffffb6] title-shadow'>{title}</h2>
-                    {/** Languages */}
-                    <div className='flex text-lg flex-wrap gap-2 md:gap-5'>
-                        <h4 className=' text-[#FF8000]'>Language </h4> :
-                        {spoken_languages.map((item, index) => <span
-                            className='text-[#79D7BE] bg-zinc-800 px-2 py-1 md:text-[16px] h-fit text-sm'
-                            key={item?.english_name}>{item?.english_name}</span>)}
-                    </div>
 
-                    {/** Rating/status */}
-                    <div className='flex gap-2 md:gap-10 flex-col md:flex-row'>
-                        <h5 className='py-[2px] text-lg space-x-2 md:space-x-5'>
-                            <span className='text-[#FF8000] mr-2 md:mr-5'>Rating</span>:
-                            <span className='text-[#79D7BE] bg-zinc-800 px-2 py-1 md:text-[16px] h-fit text-sm'>{vote_average}/10</span>
-                        </h5>
-                        <h5 className='md:px-2 py-[2px] text-lg space-x-2 md:space-x-5'>
-                            <span className='text-[#FF8000] mr-2 md:mr-5'>{status === "Released" ? "Released on " : "Upcoming"}</span>:
-                            <span className='text-[#79D7BE] bg-zinc-800 px-2 py-1 md:text-[16px] h-fit text-sm'>{status === "Released" && release_date}</span>
-                        </h5>
-                    </div>
-
-                    {/* Budget/ Revenue */}
-                    <div className='flex gap-2 md:gap-10 flex-col md:flex-row'>
-                        <h5 className='py-[2px] text-lg space-x-2 md:space-x-5'>
-                            <span className='text-[#FF8000] mr-2 md:mr-5'>Budget</span>:
-                            <span className='text-[#79D7BE] bg-zinc-800 px-2 py-1 md:text-[16px] h-fit text-sm'>{Math.floor(budget / 1000000)}+ M</span>
-                        </h5>
-                        <h5 className='py-[2px] text-lg space-x-2 md:space-x-5'>
-                            <span className='text-[#FF8000] mr-2 md:mr-5'>Revenue</span>:
-                            <span className='text-[#79D7BE] bg-zinc-800 px-2 py-1 md:text-[16px] h-fit text-sm'>
-                                {Math.floor(revenue / 1000000)}+ M</span>
-                        </h5>
-                    </div>
-
-                    {/** Genres */}
-                    <div className='flex gap-3 md:gap-10 flex-wrap'>
-                        {genres.map((item) => (
-                            <h2 className='bg-[#E1FFBB] text-[#074799] font-bold px-2 py-[2px] text-lg cursor-pointer hover:text-[#175799] hover:bg-[#E1F1B1]' key={item?.id}># {item?.name}</h2>
-                        ))}
-                    </div>
-                    {/** Tagline */}
-                    {tagline && <div className='flex gap-10 py-5 md:py-0'>
-                        <h5 className='py-[2px] text-lg space-x-5'>
-                            <span className='text-[#FF8000] mr-5'>Tagline</span>:
-                            <span className='text-[#79D7BE] bg-zinc-800 px-2 py-1 md:text-[16px] h-fit text-sm'>{tagline}</span>
-                        </h5>
-                    </div>}
-
-                    {/** overview/play */}
-                    <p className='text-justify mt-5'>{overview}</p>
-                    <button className='px-2 md:px-4 py-1 md-py-2 bg-purple-500 text-lg md:text-xl font-semibold rounded-lg hover:bg-purple-400'>
-                        <a href={homepage}>Play</a>
+                <div className="absolute top-10 left-10 z-50">
+                    <button 
+                        className="glass-panel px-4 py-2 rounded-full hover:bg-white/10 transition-colors flex items-center gap-2 text-sm font-medium"
+                        onClick={handleBackButton}
+                    >
+                        ← Back
                     </button>
                 </div>
-            </article>
-            {/* <MovieImageSlider movieId={id} /> */}
-            <Cast movieId={id} />
-            <MovieProductionsCompanies
-                production_companies={production_companies}
-                production_countries={production_countries} />
-            <div className='w-full md:w-11/12 mx-auto px-5 md:px-10 py-5'>
-                <h3 className='w-11/12 mx-auto text-2xl py-5 pt-10'>Trailer</h3>
-                <VideoBackground movieId={id} isMoviePage={true} />
+
+                <div className="absolute bottom-0 left-0 w-full p-8 md:p-16 lg:p-24 z-10 flex flex-col md:flex-row gap-10 items-end">
+                    <motion.div 
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex-1 space-y-4"
+                    >
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-sora font-bold drop-shadow-xl text-white tracking-tight leading-tight">
+                            {title}
+                        </h1>
+                        
+                        <div className="flex flex-wrap items-center gap-4 text-white/80 font-medium text-sm md:text-base">
+                            <span className="flex items-center gap-1 text-yellow-400">⭐ {vote_average?.toFixed(1)}</span>
+                            <span>•</span>
+                            <span>{release_date?.split('-')[0]}</span>
+                            <span>•</span>
+                            <div className="flex gap-2">
+                                {genres?.slice(0, 3).map(g => (
+                                    <span key={g.id} className="bg-white/10 px-3 py-1 rounded-full text-xs">{g.name}</span>
+                                ))}
+                            </div>
+                        </div>
+
+                        {tagline && <p className="text-xl md:text-2xl font-light text-netflix-muted italic">"{tagline}"</p>}
+
+                        <div className="flex flex-wrap gap-4 pt-4">
+                            <a href={homepage} target="_blank" rel="noreferrer" className="bg-white text-black px-8 py-3 rounded-xl font-bold hover:bg-white/90 transition-colors shadow-lg hover:shadow-white/20">
+                                ▶ Play Trailer
+                            </a>
+                            <button className="glass-panel px-8 py-3 rounded-xl font-medium hover:bg-white/10 transition-colors">
+                                + Watchlist
+                            </button>
+                            <button className="bg-netflix-primary/20 text-netflix-primary border border-netflix-primary/50 px-8 py-3 rounded-xl font-medium hover:bg-netflix-primary/40 transition-colors flex items-center gap-2">
+                                <span>✨</span> Ask AI About This
+                            </button>
+                        </div>
+                    </motion.div>
+                </div>
             </div>
 
+            {/* Main Content Split */}
+            <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 flex flex-col lg:flex-row gap-16">
+                
+                {/* Left Column (Story, Cast, Insights, Trailer) */}
+                <div className="flex-1 space-y-16 overflow-hidden">
+                    
+                    <section className="space-y-4">
+                        <h3 className="text-2xl font-sora font-bold">Story</h3>
+                        <p className="text-lg text-white/70 leading-relaxed max-w-3xl">
+                            {overview}
+                        </p>
+                    </section>
+
+                    <section className="space-y-6">
+                        <h3 className="text-2xl font-sora font-bold">Cast</h3>
+                        <div className="-mx-6 px-6">
+                            <Cast movieId={id} />
+                        </div>
+                    </section>
+
+                    <section className="glass-card p-8 rounded-2xl space-y-4 border border-netflix-primary/20 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-netflix-primary/20 blur-[50px] -mr-10 -mt-10" />
+                        <h3 className="text-xl font-sora font-bold text-netflix-primary flex items-center gap-2">
+                            <span>✨</span> Why you might like this
+                        </h3>
+                        <ul className="space-y-3">
+                            {fakeInsights.map((insight, idx) => (
+                                <li key={idx} className="flex items-start gap-3 text-white/80">
+                                    <span className="text-netflix-primary mt-1">•</span>
+                                    <span>{insight}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+
+                    <section className="space-y-6">
+                        <h3 className="text-2xl font-sora font-bold">Trailer</h3>
+                        <div className="rounded-2xl overflow-hidden glass-panel aspect-video">
+                            <VideoBackground movieId={id} isMoviePage={true} />
+                        </div>
+                    </section>
+
+                    <section>
+                        <MovieProductionsCompanies
+                            production_companies={production_companies}
+                            production_countries={production_countries} />
+                    </section>
+
+                </div>
+
+                {/* Right Column (Sticky Stats) */}
+                <div className="lg:w-80 flex-shrink-0">
+                    <div className="sticky top-32 glass-panel p-8 rounded-2xl space-y-8">
+                        <div>
+                            <h4 className="text-white/50 text-sm uppercase tracking-wider mb-2 font-semibold">Status</h4>
+                            <p className="text-lg font-medium">{status}</p>
+                        </div>
+                        <div>
+                            <h4 className="text-white/50 text-sm uppercase tracking-wider mb-2 font-semibold">Language</h4>
+                            <p className="text-lg font-medium">
+                                {spoken_languages?.map(l => l.english_name).join(", ")}
+                            </p>
+                        </div>
+                        <div>
+                            <h4 className="text-white/50 text-sm uppercase tracking-wider mb-2 font-semibold">Budget</h4>
+                            <p className="text-lg font-medium">
+                                {budget > 0 ? `$${(budget / 1000000).toFixed(1)}M` : "Unknown"}
+                            </p>
+                        </div>
+                        <div>
+                            <h4 className="text-white/50 text-sm uppercase tracking-wider mb-2 font-semibold">Revenue</h4>
+                            <p className="text-lg font-medium text-green-400">
+                                {revenue > 0 ? `$${(revenue / 1000000).toFixed(1)}M` : "Unknown"}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     );
 }
 
 const MoviePage = () => {
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div className="w-full h-screen bg-[#050505]"></div>}>
             <MoviePageContent />
         </Suspense>
     );

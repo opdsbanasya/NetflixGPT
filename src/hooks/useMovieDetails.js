@@ -8,18 +8,17 @@ const useMovieDetails = (movieId) => {
 
     const dispatch = useDispatch();
 
-    const getMovieDetails = async () => {
-        const data = await fetch('https://api.themoviedb.org/3/movie/' + movieId + '?language=en-US', API_OPTIONS)
-
-        const json = await data.json();
-
-        dispatch(addMovieDetails(json))
-
-    }
-
     useEffect(() => {
+        const getMovieDetails = async () => {
+            dispatch(addMovieDetails(null)); // Clear stale state
+            if (!movieId) return;
+            const data = await fetch('https://api.themoviedb.org/3/movie/' + movieId + '?language=en-US', API_OPTIONS)
+            const json = await data.json();
+            dispatch(addMovieDetails(json))
+        }
+
         getMovieDetails()
-    }, [])
+    }, [movieId, dispatch])
 }
 
 export default useMovieDetails;

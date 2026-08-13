@@ -8,16 +8,21 @@ const useCast = (movieId) => {
 
     const dispatch = useDispatch();
 
-    const getCast = async () => {
-        const data = await fetch('https://api.themoviedb.org/3/movie/' + movieId + '/credits?language=en-US', API_OPTIONS);
-        const json = await data.json();
-
-        dispatch(addCasts(json ));
-    }
-
     useEffect(() => {
+        const getCast = async () => {
+            dispatch(addCasts(null)); // Clear stale state
+            if (!movieId) return;
+            const data = await fetch('https://api.themoviedb.org/3/movie/' + movieId + '/credits?language=en-US', API_OPTIONS);
+            const json = await data.json();
+            dispatch(addCasts(json));
+        }
+
         getCast();
-    }, [])
+
+        return () => {
+            dispatch(addCasts(null));
+        }
+    }, [movieId, dispatch])
 }
 
 export default useCast;

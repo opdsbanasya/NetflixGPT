@@ -76,27 +76,35 @@ const Login = () => {
             <div className="h-screen w-full overflow-hidden">
                 <img src={MAIN_BG_IMG} className="w-full h-full object-cover object-center" alt="bg-img" />
             </div>
-            <div className="w-[85%] md:w-[65%] lg:w-[32%] absolute text-white top-[38%] left-1/2 -translate-x-1/2 -translate-y-[38%] bg-black bg-opacity-85 py-10 px-[44px] md:px-16 space-y-10 rounded-lg">
-                <h2 className=" text-3xl font-semibold">{formType === "signin" ? "Sign in" : "Sign up"}</h2>
-                <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-8 md:gap-10 lg:gap-10 ">
-                    {formType === "signup" && <div className="w-full space-y-2">
-                        <input ref={name} className="w-full px-4 py-4 text-white outline-none border border-gray-400 rounded-md bg-black bg-opacity-50" type="text" placeholder="Full name" required />
-                        <p className="absolute text-red-500 text-xs">{errorMessage?.nameResult && errorMessage.nameResult}</p>
-                        {showRules && !errorMessage?.nameResult && <p className="text-xs ml-2 ">{RULES?.name}</p>}
-                    </div> 
-                    }
-                    <div className="w-full space-y-2">
-                        <input ref={email} className="w-full px-4 py-4 text-white outline-none border border-gray-400 rounded-md bg-black bg-opacity-50" type="email" placeholder="Email" />
-                        <p className="absolute text-red-500 text-xs">{errorMessage?.emailResult && errorMessage.emailResult}</p>
+            <div className="w-[90%] md:w-[65%] lg:w-[32%] absolute text-white top-[45%] left-1/2 -translate-x-1/2 -translate-y-[45%] glass-card p-8 md:p-14 space-y-8 animate-fade-in-up">
+                <h2 className="text-3xl font-bold tracking-wide">{formType === "signin" ? "Sign In" : "Sign Up"}</h2>
+                <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }} className="flex flex-col gap-6">
+                    {formType === "signup" && (
+                        <div className="w-full space-y-1 relative">
+                            <input ref={name} className="w-full glass-input px-5 py-4 rounded-lg" type="text" placeholder="Full Name" required />
+                            {errorMessage?.nameResult && <p className="absolute text-red-500 text-xs mt-1">{errorMessage.nameResult}</p>}
+                            {showRules && !errorMessage?.nameResult && <p className="text-xs text-white/50 ml-1 mt-1">{RULES?.name}</p>}
+                        </div> 
+                    )}
+                    <div className="w-full space-y-1 relative">
+                        <input ref={email} className="w-full glass-input px-5 py-4 rounded-lg" type="email" placeholder="Email Address" required />
+                        {errorMessage?.emailResult && <p className="absolute text-red-500 text-xs mt-1">{errorMessage.emailResult}</p>}
                     </div>
-                    <div className="w-full space-y-2">
-                        <input ref={password} className="w-full px-4 py-4 text-white outline-none border border-gray-400 rounded-md bg-black bg-opacity-50" type="password" placeholder="Password" />
-                        <p className="absolute text-red-500 text-xs">{errorMessage?.passwordResult && errorMessage.passwordResult}</p>
-                        {showRules && formType === "signup" && !errorMessage?.nameResult && RULES?.password.map((rule, index)=> <p key={index} className="text-xs list-item ml-5">{rule}</p>)}
+                    <div className="w-full space-y-1 relative">
+                        <input ref={password} className="w-full glass-input px-5 py-4 rounded-lg" type="password" placeholder="Password" required />
+                        {errorMessage?.passwordResult && <p className="absolute text-red-500 text-xs mt-1">{errorMessage.passwordResult}</p>}
+                        {showRules && formType === "signup" && !errorMessage?.nameResult && RULES?.password.map((rule, index)=> <p key={index} className="text-xs list-item ml-5 text-white/50">{rule}</p>)}
                     </div>
-                    <input type="submit" onClick={() => handleSubmit()} value={formType === "signin" ? "Sign in" : "Sign up"} className="py-2 px-4 text-white rounded-md font-semibold bg-red-700 cursor-pointer" />
+                    <button type="submit" className="w-full py-4 text-white rounded-lg font-semibold bg-netflix-red hover:bg-red-700 transition-all shadow-lg hover:shadow-red-500/30 text-lg mt-4">
+                        {formType === "signin" ? "Sign In" : "Sign Up"}
+                    </button>
                 </form>
-                <h3>{formType === "signin" ? "New to Netflix?" : "Already have account?"} <span onClick={() => handleFormType()} className="font-semibold hover:underline cursor-pointer">Sign {formType === "signin" ? "up" : "in"}</span>.</h3>
+                <div className="text-white/70 font-medium">
+                    {formType === "signin" ? "New to Netflix?" : "Already have an account?"}{" "}
+                    <span onClick={() => handleFormType()} className="text-white font-semibold hover:underline cursor-pointer transition-all">
+                        Sign {formType === "signin" ? "up" : "in"} now.
+                    </span>
+                </div>
             </div>
         </section>
     );

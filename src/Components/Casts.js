@@ -15,19 +15,18 @@ const Credits = ({ movieId }) => {
     const { cast } = movieCast;
 
     return (
-        <div className='w-full md:w-11/12 min-h-[40vh] mx-auto px-6 md:px-14 py-5'>
-            <h3 className='w-11/12 mx-auto text-2xl py-3 md:py-5'>Cast</h3>
-            <div className='w-full md:w-11/12 mx-auto h-full flex gap-5 md:gap-10 py-2 md:py-5 overflow-x-scroll scrollbar-hide md:px-auto'>
+        <div className='w-full'>
+            <div className='flex gap-4 md:gap-6 pb-4 overflow-x-auto hide-scrollbar snap-x'>
                 {cast.map(person => {
-                    return person?.profile_path && <div key={person?.id} className='w-4/12 flex flex-col items-center '>
-                        <div className='w-24 md:w-36 rounded-full overflow-hidden cursor-pointer hover:scale-105'>
+                    return person?.profile_path && <div key={person?.id} className='w-32 md:w-40 flex-shrink-0 flex flex-col items-center group snap-start'>
+                        <div className='w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-105 border border-white/10 group-hover:border-white/30'>
                             <img src={'https://image.tmdb.org/t/p/w220_and_h330_face' + person?.profile_path}
                                 alt={person?.name}
-                                className='aspect-square object-cover'
+                                className='w-full h-full object-cover'
                             />
                         </div>
-                        <h3 className='text-sm md:text-lg text-center font-semibold mt-4'>{person?.character}</h3>
-                        <h4 className='text-xs md:text-sm'>{person?.name}</h4>
+                        <h3 className='text-sm md:text-base text-center font-bold mt-4 text-white/90 leading-tight'>{person?.name}</h3>
+                        <h4 className='text-xs md:text-sm text-netflix-primary text-center mt-1'>{person?.character}</h4>
                     </div>
                 })}
             </div>

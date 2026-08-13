@@ -51,15 +51,29 @@ const Header = () => {
     }
 
     return (
-        <header className={`px-8 md:px-20 bg-transparent absolute top-0 ${user && "bg-black"}  flex items-center justify-between`}>
-            <img className={`w-6/12 lg:w-2/12 py-4 ${user && "w-[35%] md:w-3/12"}`} src={NETFLIX_LOGO} alt="Netflix Logo" />
-            {user && <nav className="flex items-center gap-3 md:gap-8">
-                <button onClick={() => handleGptSearch()} className=" text-white font-semibold text-md md:text-xl px-2 md:px-4 md:py-2  cursor-pointer z-10">
-                    {!showGPTButton ? <img className="w-8 md:hidden" src={gptIcon} alt="GPT Search" /> : <IoCloseSharp className="text-2xl bg-red-600 rounded-md lg:hidden" />}
-                    <span className="hidden lg:block px-4 py-2 text-xl bg-purple-600 rounded-md">{showGPTButton ? "Close GPT" : "GPT Search"}</span>
+        <header className={`px-8 md:px-20 fixed top-0 w-full z-50 transition-all duration-300 ${user ? "glass-navbar py-3" : "bg-transparent py-4"} flex items-center justify-between`}>
+            <img className={`w-[120px] md:w-[150px] transition-all`} src={NETFLIX_LOGO} alt="Netflix Logo" />
+            
+            {user && <nav className="flex items-center gap-4 md:gap-6">
+                <button onClick={() => handleGptSearch()} className="group flex items-center gap-2 text-white/90 hover:text-white text-sm font-medium px-4 py-2 rounded-full glass-panel transition-all hover:bg-white/20">
+                    {!showGPTButton ? (
+                        <>
+                            <img className="w-5 h-5 opacity-90 group-hover:opacity-100 transition-opacity" src={gptIcon} alt="GPT Search" />
+                            <span className="hidden md:block">AI Search</span>
+                        </>
+                    ) : (
+                        <>
+                            <IoCloseSharp className="text-xl text-white/80 group-hover:text-white" />
+                            <span className="hidden md:block">Close Search</span>
+                        </>
+                    )}
                 </button>
-                <img className="w-8 rounded-full mr-1 md:mr-2" src={user.photoURL} />
-                <button onClick={() => handleSignOut()} className="text-white font-semibold md:text-xl bg-red-600 px-2 md:px-4 py-1 md:py-2 rounded-md cursor-pointer"><FaSignOutAlt /></button>
+                <div className="flex items-center gap-3 ml-2 border-l border-white/20 pl-4">
+                    <img className="w-9 h-9 rounded-full object-cover border border-white/20 shadow-sm" src={user.photoURL} alt="User profile" />
+                    <button onClick={() => handleSignOut()} className="text-white/70 hover:text-red-500 hover:bg-red-500/10 p-2 rounded-full transition-all" title="Sign out">
+                        <FaSignOutAlt className="text-xl" />
+                    </button>
+                </div>
             </nav>}
         </header>
 
